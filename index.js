@@ -15,6 +15,9 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Hello!' });
+});
 app.use("/api/auth",authRoute);
 app.use("/api/role",cargoRoute);
 app.use("/api/document",documentRoute);
