@@ -5,7 +5,7 @@ const path = require('path');
 
 dotenv.config();
 
-const db = require('./dbconfig');
+const db = require('./dbconfig.js');
 const authRoute=require('./routes/authRoutes.js')
 const cargoRoute=require('./routes/cargoRoutes.js')
 const documentRoute=require('./routes/documentRoutes.js')
@@ -15,13 +15,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use("/auth",authRoute);
-app.use("/role",cargoRoute);
-app.use("/document",documentRoute);
-app.use("/user",usuarioRoute);
+app.use("/api/auth",authRoute);
+app.use("/api/role",cargoRoute);
+app.use("/api/document",documentRoute);
+app.use("/api/user",usuarioRoute);
 
 //archivos obtener
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Manejar el evento beforeExit para cerrar la conexión a la base de datos
 process.on('beforeExit', () => {
