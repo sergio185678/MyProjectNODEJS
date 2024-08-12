@@ -27,6 +27,7 @@ app.use("/api/user",usuarioRoute);
 app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Manejar el evento beforeExit para cerrar la conexión a la base de datos
+// PELIGROSOOOOOO
 /*process.on('beforeExit', () => {
   db.end();
 });*/

@@ -9,17 +9,13 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
-    keepAliveInitialDelay: 10000, // 0 by default.
-    enableKeepAlive: true,
+    connectionLimit: 10,
 });
 
 db.connect((err) => {
-    console.log(db);
-    if (err) {
-        console.error('Error al conectar a la base de datos:', err);
-    } else {
-        console.log('Conexión exitosa a la base de datos');
-    }
+    if (err) throw err;
+    console.log('Connected to the database!');
 });
+
 
 module.exports = db;
