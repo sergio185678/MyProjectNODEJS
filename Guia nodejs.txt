@@ -1,0 +1,54 @@
+Crear proyecto: npm init
+
+Herramientas útiles: 
+	- npm install express
+	- npm install -g nodemon   (no demon para actualización automatica, ejecutar asi: nodemon app.js)
+	- npm install dotenv (para utilizar .env)
+	- npm install cors (para usar cors en node.js)
+	- path (no instalar, permite obtener rutas del directorio actual por ejemplo, se usa cuando quieres administrar archivos)
+	- fs (permite hacer CRUD de archivos y directorios en la API)
+	- npm install multer (middleware para subir archivos)
+	- npm install mysql (para realizar consultas sql y conectar base de datos) OJOOOO
+	- npm install mysql2 (en caso el anterior tenga error solo instalar y cambiar en require)
+	- npm install jsonwebtoken (para usar jwt)
+	- npm install crypto (para encriptar contraseña y esas cosas)
+
+Ejecutar con nodemon: nodemon app.js
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+::::::::::::::::::::COSAS TOMAR EN CUENTA::::::::::::::
+OJOO en las peticiones de "res" siempre poner if y else 
+Para llamar el body del request: req.body.correo
+Para llamar del param: /:id_cliente    ,   req.params.id_cliente
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+::::::::::::::::::::ADMINISTRACION ARCHIVO::::::::::::::
+1. Crear un archivo al mismo nivel del archivo principal como app.js o inde.js, ponerle el nombre que quieras
+2. Importar el "path" , y agregar esto: app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+3. En la ruta donde administraras subidas o cosas similares seguir los pasos de abajo.
+4. Usar multer, path y fs 
+5. Poner lo de abajo
+6. 	const storage = multer.diskStorage({
+    		destination: 'uploads/',
+    		filename: (req, file, cb) => {
+      		const ext = path.extname(file.originalname);
+      		const filename = path.basename(file.originalname, ext);
+      		cb(null, filename + '-' + Date.now() + ext);
+    		},
+	});
+
+	const upload = multer({ storage: storage });
+7. Agregar en la ruta especifica esto: upload.single('file')
+8. Eso guardara automaticamente con un id unico, y deberas leer con req.file si quieres utilizar para tu service.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+::::::::::::::::::::JWT::::::::::::::
+1. Copiar los 3 archivos escenciales de middlewares
+2. En el .env especificar el "SECRETKEY"
+3. Para crear jwt usar: var jwt = require('jsonwebtoken'); y guiarte del ejemplo
+4. Al momento de crear poner bien los parametros, y en caso que cambies de nombre cambiar tambien en los middlewares
+5. Si quieres impedir que alguien entre una ruta usar: checkSesionAuth y checkRoleAuth([1,2])  en este ultimo puede varias en mi caso es id del cargo que permito.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+::::::::::::::::::::CURIOSIDADES::::::::::::::
+- No hay problemas de referencia ciclica como cuando trabajas con ORMS
