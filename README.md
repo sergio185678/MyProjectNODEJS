@@ -4,14 +4,7 @@ Este proyecto sirve como base y guía para la creación de otros proyectos simil
 
 Nota: El backend desplegado actualmente no admite la gestión de archivos com subir imagenes debido a algunas limitaciones del hosting.
 
-Usuario con cargo administrador: 
-  - Email: sergio1@gmail.com
-  - Contraseña: 123
-    
-Link desplegado del backend: https://my-project-nodejs.vercel.app/
-Creditos: [https://render.com/](https://vercel.com/)
-
-Link del repositorio del frontend: [https://github.com/sergio185678/FrontendBaseAngularWithJava](https://github.com/sergio185678/FrontendBaseAngularWithNodejs)
+Link del repositorio del frontend: https://github.com/sergio185678/FrontendBaseAngularWithNodejs
 ## Estructura del Proyecto:
 
 - **Routes**: Gestiona todas las rutas, y trabaja junto a los Controllers y Middlewares.
